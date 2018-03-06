@@ -4,13 +4,12 @@ import Tweet from './Tweet.js'
 class Tweets extends Component {
   render () {
     const tweets = this.props.tweets
+    // DEPRECATE? moving api layer to do something if no tweets are provided
     return (
-      <div className='container'>
-        <ul>
-          {tweets.map((tweet, index) => {
-            return <li><Tweet tweet={tweet} screenName={this.props.screenName} /></li>
-          })}
-        </ul>
+      <div className='frame'>
+        {tweets.map((tweet) => {
+          return <Tweet key={tweet.id} tweet={tweet} screenName={this.props.screenName} />
+        })}
       </div>
     )
   }

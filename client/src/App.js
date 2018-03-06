@@ -6,14 +6,11 @@ import Tweets from './Tweets.js'
 
 import styled from 'styled-components'
 
-const Container = styled.div`
-  display: inline-block;
-`
-
 const Header = styled.header`
   font-size: 2em;
 `
 
+// TODO: find out how to unstyle the little clear button
 const Input = styled.input`
   position: relative;
   margin-top: 10px;
@@ -26,6 +23,17 @@ const Input = styled.input`
   font-weight: 100; 
   background-color: papayawhip;
   display: inline-block;
+  --webkit-appearance: textfield;
+  --webkit-rtl-ordering: logical;
+  cursor: text;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  margin: 0em;
+
 `
 
 const H2 = styled.h2`
@@ -51,32 +59,30 @@ class App extends Component {
           tweets: tweets.data,
           screenName: screenName
         })
+
+        if (this.state.tweets.length === 0) {
+          this.setState({
+            tweets: [{full_text: 'No drunk tweets :/'}]
+          })
+        }
       })
       .catch(error => console.log(error))
-
-    ReactDOM.findDOMNode(this.refs.textInput).value = ''
-  }
-
-  handleChange (event) {
-    this.setState({screenName: event.target.value})
   }
 
   render () {
     return (
-      <Container className='frame'>
+      <div className='frame'>
         <Header>
           <form action='submit' className='screenName'
             onSubmit={this.loadTweets.bind(this)}>
-            <H2>@<Input onChange={this.handleChange.bind(this)} value={this.state.screenName} 
-              type='search'
+            <H2>@<Input value={this.state.screenName} type='text'
               ref='textInput'
               placeholder='Twitter @handle' /></H2>
-            <button type='submit' action='submit'>Submit</button>
           </form>
         </Header>
 
         <Tweets tweets={this.state.tweets} screenName={this.state.screenName} />
-      </Container>
+      </div>
     )
   }
 }

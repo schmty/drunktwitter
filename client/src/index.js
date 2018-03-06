@@ -12,8 +12,6 @@ injectGlobal`
     font-size: 14px;
     background: papayawhip;
   }
-
-
 `
 
 ReactDOM.render(<App />, document.getElementById('root'))
