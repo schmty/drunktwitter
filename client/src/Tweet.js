@@ -13,7 +13,6 @@ const TweetContain = styled.div`
 const ProfilePic = styled.div`
   float: left;
   display: block;
-  min-height: 100%;
 `
 
 const Image = styled.img`
@@ -36,12 +35,11 @@ const TweetBody = styled.div`
 class Tweet extends Component {
   render () {
     const screenName = this.props.screenName ? this.props.screenName : 'no user'
-    const imgUrl = this.props.tweet.user.profile_image_url ? this.props.tweet.user.profile_image_url : '#'
     return (
       <TweetContain className='bit-75'>
         <TweetHeader>@{screenName}</TweetHeader>
         <ProfilePic>
-          <Image src={imgUrl} />
+          <Image src={this.props.tweet.user.profile_image_url} />
         </ProfilePic>
         <TweetBody>
           {this.props.tweet.full_text}

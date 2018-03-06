@@ -57,14 +57,15 @@ class App extends Component {
 
     getTweets(screenName)
       .then((tweets) => {
-        this.setState({
-          tweets: tweets.data,
-          screenName: screenName
-        })
-
-        if (this.state.tweets.length === 0) {
+        if (tweets.data.length === 0) {
+          console.log('No tweets')
+          console.log(tweets)
           this.setState({
-            tweets: [{full_text: 'No drunk tweets :/'}]
+            tweets: [{ user: {profile_image_url: 'http://www.iconninja.com/files/957/859/584/beverage-drink-mug-beer-icon.png'}, full_text: 'No drunk tweets :/'}]
+          })
+        } else {
+          this.setState({
+            tweets: tweets.data
           })
         }
       })
