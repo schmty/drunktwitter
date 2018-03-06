@@ -6,8 +6,9 @@ import Tweets from './Tweets.js'
 
 import styled from 'styled-components'
 
-const Header = styled.header`
+const Header = styled.div`
   font-size: 2em;
+  margin: 0 auto;
 `
 
 // TODO: find out how to unstyle the little clear button
@@ -32,12 +33,13 @@ const Input = styled.input`
   text-transform: none;
   text-indent: 0px;
   text-shadow: none;
-  margin: 0em;
+  margin: 0 auto;
 
 `
 
-const H2 = styled.h2`
+const H3 = styled.h3`
   font-weight: 100;
+  text-align: center;
 `
 
 class App extends Component {
@@ -75,9 +77,9 @@ class App extends Component {
         <Header>
           <form action='submit' className='screenName'
             onSubmit={this.loadTweets.bind(this)}>
-            <H2>@<Input value={this.state.screenName} type='text'
+            <H3>@<Input type='text'
               ref='textInput'
-              placeholder='Twitter @handle' /></H2>
+              placeholder='Twitter @handle' /></H3>
           </form>
         </Header>
 

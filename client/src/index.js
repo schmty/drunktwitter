@@ -9,7 +9,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     font-family: Helvetica;
-    font-size: 14px;
+    font-size: 16px;
     background: papayawhip;
   }
 `
