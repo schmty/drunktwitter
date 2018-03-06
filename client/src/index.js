@@ -8,10 +8,12 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Helvetica;
     font-size: 14px;
     background: papayawhip;
   }
+
+
 `
 
 ReactDOM.render(<App />, document.getElementById('root'))

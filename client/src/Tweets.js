@@ -6,7 +6,6 @@ class Tweets extends Component {
     const tweets = this.props.tweets
     return (
       <div className='container'>
-        <h2>{this.props.screenName}</h2>
         <ul>
           {tweets.map((tweet, index) => {
             return <li><Tweet tweet={tweet} screenName={this.props.screenName} /></li>
