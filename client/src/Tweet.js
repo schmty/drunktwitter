@@ -5,14 +5,25 @@ import styled from 'styled-components'
 const TweetContain = styled.div`
   background: #fff;
   margin: 2% auto;
-  max-width: 600px;
-  border: 2px solid #333;
-  min-height: 100px;
+  // change these values?
+  max-width: 700px;
+  min-width: 600px;
+  -wbkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+
+  // box shadow stuff;
+  -webkit-box-shadow: #bdc3c7 0 5px 5px;
+  -moz-box-shadow: #bdc3c7 0 5px 5px;
+  box-shadow: #bdc3c7 0 5px 5px;
 `
 
 const ProfilePic = styled.div`
   float: left;
   display: block;
+  padding: 1%;
 `
 
 const Image = styled.img`
@@ -24,23 +35,23 @@ const Image = styled.img`
 const TweetHeader = styled.h3`
   font-size: 1.05em;
   font-weight: 300;
+  padding-top: 1%;
 `
 
 const TweetBody = styled.div`
   margin-left: 10%;
-  max-width: 500px;
-  min-width: 200px;
+  max-width: 100%;
+  min-width: 50%;
 `
 
 class Tweet extends Component {
   render () {
-    const screenName = this.props.screenName ? this.props.screenName : 'no user'
     return (
       <TweetContain className='bit-75'>
-        <TweetHeader>@{screenName}</TweetHeader>
         <ProfilePic>
           <Image src={this.props.tweet.user.profile_image_url} />
         </ProfilePic>
+        <TweetHeader>@{this.props.screenName}</TweetHeader>
         <TweetBody>
           {this.props.tweet.full_text}
         </TweetBody>

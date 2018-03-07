@@ -61,11 +61,14 @@ class App extends Component {
           console.log('No tweets')
           console.log(tweets)
           this.setState({
-            tweets: [{ user: {profile_image_url: 'http://www.iconninja.com/files/957/859/584/beverage-drink-mug-beer-icon.png'}, full_text: 'No drunk tweets :/'}]
+            tweets: [{ user: {profile_image_url: 'http://www.iconninja.com/files/957/859/584/beverage-drink-mug-beer-icon.png'}, full_text: 'No drunk tweets :/'}],
+            screenName: screenName
           })
+          // TODO: do i need to have screen name even here?
         } else {
           this.setState({
-            tweets: tweets.data
+            tweets: tweets.data,
+            screenName: screenName
           })
         }
       })
