@@ -10,7 +10,7 @@ const client = new Twitter({
 })
 
 const app = express()
-const port = 3001
+const port = process.env.PORT || 5000
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
@@ -18,9 +18,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/', (req, res) => {
-  res.sendFile('/client/build/index.html', { root: __dirname })
-})
+app.use('/', express.static(`${__dirname}/client/build`))
 
 app.get('/api/user_tweets', (req, res) => {
   let tweetList = []
@@ -33,9 +31,8 @@ app.get('/api/user_tweets', (req, res) => {
       console.log(err)
     }
     if (!err) {
-      let date
       _.forEach(tweets, (tweet) => {
-        date = new Date(tweet.created_at)
+        let date = new Date(tweet.created_at)
         if (date.getHours() >= 20 || date.getHours() <= 3) {
           tweetList.push(tweet)
         }

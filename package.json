@@ -2,19 +2,33 @@
   "name": "drunktwitter",
   "version": "1.0.0",
   "license": "MIT",
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "./client"
+    ]
+  },
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon app.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "serverTest": "jest --watch .",
+    "clientTest": "cd client && yarn test",
+    "test": "concurrently --kill-others-on-fail \"yarn serverTest\" \"yarn clientTest\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\" \"yarn test\""
   },
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "lodash": "^4.17.5",
+    "npm": "^5.8.0",
     "twitter": "^1.7.1"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

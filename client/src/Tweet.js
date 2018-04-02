@@ -5,9 +5,10 @@ import styled from 'styled-components'
 const TweetContain = styled.div`
   background: #fff;
   margin: 2% auto;
+  padding-right: 0.5%;
   // change these values?
-  max-width: 700px;
   min-width: 600px;
+  max-width: 650px;
   -wbkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
@@ -40,8 +41,7 @@ const TweetHeader = styled.h3`
 
 const TweetBody = styled.div`
   margin-left: 10%;
-  max-width: 100%;
-  min-width: 50%;
+  min-width: 90%;
 `
 
 class Tweet extends Component {

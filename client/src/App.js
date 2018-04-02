@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './App.css'
-import getTweets from './api.js'
-import Tweets from './Tweets.js'
+import getTweets from './api/tweets.js'
+import Tweet from './Tweet.js'
 
 import styled from 'styled-components'
 
@@ -16,12 +16,14 @@ const Input = styled.input`
   position: relative;
   margin-top: 10px;
   height: 100px;
-  width: 500px;
+  max-width: 600px;
+  outline: none;
+  min-width: 550px;
   font-size: 1.5em;
   text-align: left;
   border: none;
   opacity: 1;
-  font-weight: 100; 
+  font-weight: 100;
   background-color: papayawhip;
   display: inline-block;
   --webkit-appearance: textfield;
@@ -34,11 +36,10 @@ const Input = styled.input`
   text-indent: 0px;
   text-shadow: none;
   margin: 0 auto;
-
 `
 
 const H3 = styled.h3`
-  font-weight: 100;
+  font-weight: 10;
   text-align: center;
 `
 
@@ -57,17 +58,15 @@ class App extends Component {
 
     getTweets(screenName)
       .then((tweets) => {
-        if (tweets.data.length === 0) {
-          console.log('No tweets')
-          console.log(tweets)
+        if (tweets.length === 0) {
           this.setState({
-            tweets: [{ user: {profile_image_url: 'http://www.iconninja.com/files/957/859/584/beverage-drink-mug-beer-icon.png'}, full_text: 'No drunk tweets :/'}],
+            tweets: null,
             screenName: screenName
           })
           // TODO: do i need to have screen name even here?
         } else {
           this.setState({
-            tweets: tweets.data,
+            tweets: tweets,
             screenName: screenName
           })
         }
@@ -76,6 +75,8 @@ class App extends Component {
   }
 
   render () {
+    const tweets = this.state.tweets
+    const screenName = this.state.screenName
     return (
       <div className='frame'>
         <Header>
@@ -87,7 +88,13 @@ class App extends Component {
           </form>
         </Header>
 
-        <Tweets tweets={this.state.tweets} screenName={this.state.screenName} />
+        <div className='frame'>
+          {tweets ? (tweets.map((tweet) => {
+            return <Tweet key={tweet.id} tweet={tweet} screenName={this.state.screenName} />
+          }))
+            : <div>{screenName} has no drunk tweets </div>
+          }
+        </div>
       </div>
     )
   }
