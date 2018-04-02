@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const Twitter = require('twitter')
-const _ = require('lodash')
 
 const client = new Twitter({
   consumer_key: process.env.TW_CS_KEY,
@@ -31,7 +30,7 @@ app.get('/api/user_tweets', (req, res) => {
       console.log(err)
     }
     if (!err) {
-      _.forEach(tweets, (tweet) => {
+      tweets.forEach((tweet) => {
         let date = new Date(tweet.created_at)
         if (date.getHours() >= 20 || date.getHours() <= 3) {
           tweetList.push(tweet)
